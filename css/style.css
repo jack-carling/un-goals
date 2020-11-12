@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Lora:wght@700&family=Noto+Sans+JP&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #EEE;
+	font-family: 'Lato', sans-serif;
+	width: 100wv;
+	height: 100wh;
+	margin: 0;
+}
+
+/* Centrerar texten FN som logotyp för hemsidan */
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.logo h1 {
+	color: #5b92e5;
+	font-size: 3rem;
+	text-align: center;
+}
+
+/* Style för alla div-element som genereras av js */
+.goal {
+	background-color: #FFF;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	min-height: 170px;
+	position: relative;
+}
+.goal p {
+	margin: 0;
+}
+.goal span {
+	color: #EEE;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	font-family: 'Lora', serif;
+	font-size: 3rem;
+	text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+}
+.goal button {
+	font-family: 'Lato', sans-serif;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	border: 2px solid #EEE;
+	background-color: #EEE;
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+	outline: 0;
+	transition: 0.5s;
+}
+.goal button:hover {
+	cursor: pointer;
+	background-color: #FFF;
+	border: 2px solid #EEE;
+}
+
+/* Alla div-element läggs i grid */
+#goals {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 10px;
+}
+
+/* Style för error-meddelande som visas om data inte kan hämtas */
+.error {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+}
+.error span {
+	font-family: 'Noto Sans JP', sans-serif;
+	font-size: 3rem;
+}
+.error p {
+	margin: 0 10px;
+	text-align: center;
+}
+
+/*
+Design för en overlay som visas om användaren vill ha mer information om ett specifikt mål
+En transparent svart bakgrund som täcker hela skärmen med en vit ruta i mitten
+Använder max-width och max-height med calc istället för 90% eller margin eftersom detta genererade ett mer jämnt resultat för mobile
+*/
+.overlay {
+	background-color: rgba(0, 0, 0, 0.75);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+.overlay-info {
+	background-color: #FFF;
+	max-height: calc(100% - 50px);
+	max-width: calc(100% - 50px);
+	position: relative;
+	overflow: auto;
+	padding: 10px;
+}
+p.summary {
+	color: #333;
+	padding-left: 1rem;
+}
+.overlay-info h1, .overlay-info h2 {
+	font-family: 'Lora', serif;
+	margin: 0;
+}
+.overlay-info p {
+	margin-bottom: 0;
+}
+.overlay-info h2 {
+	font-size: 1rem;
+}
+.overlay-info button {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border: 2px solid #EEE;
+	background-color: #EEE;
+	top: 10px;
+	right: 10px;
+	outline: 0;
+	border-radius: 50%;
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+	transition: 0.5s;
+}
+.overlay-info button:hover {
+cursor: pointer;
+background-color: #FFF;
+border: 2px solid #EEE;
+}
+
+/* Class som läggs på för att visa gömda element genom js */
+.show {
+	display: flex;
+}
+
+/* Ändrar grid till en, två eller tre kolumner beroende på skärmstorlek */
+@media only screen and (max-width: 1000px) {
+	#goals {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#goals {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
